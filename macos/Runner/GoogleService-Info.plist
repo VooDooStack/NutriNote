@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>96874525266-i23jh7fapbn85sgdua2be9fs678f56hb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.96874525266-i23jh7fapbn85sgdua2be9fs678f56hb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAaJYfUFXLw7Mk2KX0CF1Tp68rqlcv1QUo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>96874525266</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.voostack.nutrinote</string>
+	<key>PROJECT_ID</key>
+	<string>nutrinote-7daa5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nutrinote-7daa5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:96874525266:ios:fb85f6cea8567138d1658b</string>
+</dict>
+</plist>
