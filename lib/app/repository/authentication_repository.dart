@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nutrinote/app/helpers/endpoint.dart';
 import 'package:nutrinote/app/services/analytics_service.dart';
 import 'package:nutrinote/app/state/app/app_bloc.dart';
 import 'package:nutrinote/main.dart';
@@ -12,6 +13,7 @@ import 'package:nutrinote/main.dart';
 class AuthenticationRepository {
   final controller = StreamController<AuthStream>.broadcast();
   final storage = const FlutterSecureStorage();
+  final Endpoints endPoints = Endpoints();
 
   Stream<AuthStream> get status async* {
     yield AuthStream(user: null, status: AuthenticationStatus.unauthenticated);
@@ -34,7 +36,7 @@ class AuthenticationRepository {
 
   Future<void> logIn({required String email, required String password}) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) => value.user);
+      endPoints.post('/api/account/login');
       locator<AnalyticsService>().logLoggedIn(loggedInMethod: 'email');
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(msg: e.message ?? 'Error', toastLength: Toast.LENGTH_LONG, backgroundColor: Colors.red, timeInSecForIosWeb: 3);

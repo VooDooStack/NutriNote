@@ -6,7 +6,14 @@ import 'package:go_router/go_router.dart';
 import 'package:nutrinote/app/services/analytics_service.dart';
 import 'package:nutrinote/app/services/refresh_stream.dart';
 import 'package:nutrinote/app/state/app/app_bloc.dart';
-import 'package:nutrinote/pages/home_page.dart';
+import 'package:nutrinote/pages/addition_page.dart';
+import 'package:nutrinote/pages/dashboard_page.dart';
+import 'package:nutrinote/pages/login_page.dart';
+import 'package:nutrinote/pages/logs_page.dart';
+import 'package:nutrinote/pages/main_page.dart';
+import 'package:nutrinote/pages/register_page.dart';
+import 'package:nutrinote/pages/relationship_page.dart';
+import 'package:nutrinote/pages/settings_page.dart';
 
 class AppRouter {
   final GlobalKey<NavigatorState>? navigatorKey;
@@ -19,16 +26,56 @@ class AppRouter {
   late final router = GoRouter(
     navigatorKey: navigatorKey,
     refreshListenable: GoRouterRefreshStream(appBloc.stream),
-    initialLocation: '/',
+    initialLocation: '/dashboard',
     observers: [
       if (!kDebugMode) GetIt.instance<AnalyticsService>(),
     ],
     routes: [
-      GoRoute(
-        path: '/',
-        name: 'home_page',
-        builder: (context, state) => const HomePage(),
+      ShellRoute(
+        navigatorKey: GlobalKey<NavigatorState>(),
+        builder: (context, state, child) {
+          return MainPage(
+            title: baseRouteNames.entries
+                .firstWhere(
+                  (element) => element.key == '${GoRouter.of(context).location.split("/")[1]}_page',
+                  orElse: () => baseRouteNames.entries.first,
+                )
+                .key
+                .split('_')[0],
+            onTap: (val) => GoRouter.of(context).goNamed(baseRouteNames.entries.firstWhere((element) => element.value == val).key),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: '/dashboard',
+            name: 'dashboard_page',
+            builder: (context, state) => const DashboardPage(),
+          ),
+          GoRoute(
+            path: '/folder',
+            name: 'folder_page',
+            builder: (context, state) => const LogsPage(),
+          ),
+          GoRoute(
+            path: '/addition',
+            name: 'addition_page',
+            builder: (context, state) => const AdditionPage(),
+          ),
+          GoRoute(
+            path: '/relationship',
+            name: 'relationship_page',
+            builder: (context, state) => const RelationshipPage(),
+          ),
+          GoRoute(
+            path: '/settings',
+            name: 'settings_page',
+            builder: (context, state) => const SettingsPage(),
+          ),
+        ],
       ),
+      GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
+      GoRoute(path: '/register', builder: (context, state) => const RegisterPage()),
     ],
     redirect: (context, state) {
       final bool isAuthenticated = appBloc.state.status == AuthenticationStatus.authenticated;
@@ -42,3 +89,11 @@ class AppRouter {
     },
   );
 }
+
+const Map<String, int> baseRouteNames = {
+  'dashboard_page': 0,
+  'folder_page': 1,
+  'addition_page': 2,
+  'relationship_page': 3,
+  'settings_page': 4,
+};

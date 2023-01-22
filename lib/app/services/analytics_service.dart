@@ -13,9 +13,10 @@ class AnalyticsService extends NavigatorObserver {
   final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   final FirebaseCrashlytics crashlytics = FirebaseCrashlytics.instance;
   final FirebasePerformance performance = FirebasePerformance.instance;
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  late FirebaseAuth auth;
   String currentRoute = "/";
   AnalyticsService({required this.debug}) {
+    auth = FirebaseAuth.instance;
     if (debug) {
       log("AnalyticsService initialized in debug mode");
     } else {
