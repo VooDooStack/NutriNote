@@ -7,16 +7,16 @@ part 'app_user_model.g.dart';
 class AppUser extends Equatable {
   final String displayName;
   final String email;
-  final String phoneNumber;
-  final String imageUrl;
-  final String token;
+  final String? token;
+  final String? phoneNumber;
+  final String? imageUrl;
 
   const AppUser({
     required this.displayName,
     required this.email,
-    required this.phoneNumber,
-    required this.imageUrl,
-    required this.token,
+    this.phoneNumber,
+    this.imageUrl,
+    this.token,
   });
 
   @override
@@ -41,4 +41,13 @@ class AppUser extends Equatable {
 
   factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
   Map<String, dynamic> toJson() => _$AppUserToJson(this);
+
+  //empty user factory
+  factory AppUser.empty() => const AppUser(
+        displayName: '',
+        email: '',
+        phoneNumber: '',
+        imageUrl: '',
+        token: '',
+      );
 }

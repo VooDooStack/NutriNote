@@ -6,9 +6,7 @@ import 'package:nutrinote/widgets/atoms/nn_icon_button.dart';
 import 'package:nutrinote/widgets/atoms/nn_text_field.dart';
 
 class LoginPhoneFormView extends StatelessWidget {
-  const LoginPhoneFormView({
-    Key? key,
-  }) : super(key: key);
+  const LoginPhoneFormView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

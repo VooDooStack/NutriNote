@@ -82,7 +82,7 @@ class AppRouter {
       if (state.location != "/signup" && !isAuthenticated && state.location != "/login" && !isAuthenticated) {
         return "/login";
       } else if (state.location == "/login" && isAuthenticated || state.location == "/signup" && isAuthenticated) {
-        return "/session";
+        return "/dashboard";
       } else {
         return null;
       }

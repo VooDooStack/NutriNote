@@ -10,36 +10,36 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(title), centerTitle: false, actions: const [CircleAvatar(), SizedBox(width: 10)]),
       body: child,
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
         backgroundColor: Theme.of(context).bottomAppBarColor,
         color: Theme.of(context).colorScheme.primary,
-        activeColor: Theme.of(context).colorScheme.primary,
+        activeColor: Theme.of(context).colorScheme.secondary,
         initialActiveIndex: 0,
         onTap: onTap,
         elevation: 8,
         items: [
           TabItem(
-            icon: Icon(Icons.dashboard, color: Theme.of(context).colorScheme.primary),
-            activeIcon: Icon(Icons.dashboard, color: Theme.of(context).appBarTheme.foregroundColor),
+            icon: Icon(Icons.dashboard, color: Theme.of(context).colorScheme.onBackground),
+            activeIcon: Icon(Icons.dashboard, color: Theme.of(context).colorScheme.secondary),
           ),
           TabItem(
-            icon: Icon(Icons.folder_open, color: Theme.of(context).colorScheme.primary),
-            activeIcon: Icon(Icons.folder_open, color: Theme.of(context).appBarTheme.foregroundColor),
+            icon: Icon(Icons.folder_open, color: Theme.of(context).colorScheme.onBackground),
+            activeIcon: Icon(Icons.folder_open, color: Theme.of(context).colorScheme.secondary),
           ),
           TabItem(
-            icon: Icon(Icons.add, color: Theme.of(context).colorScheme.background),
-            activeIcon: Icon(Icons.add, color: Theme.of(context).floatingActionButtonTheme.foregroundColor),
+            icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimary),
+            activeIcon: Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimary),
           ),
           TabItem(
-            icon: Icon(Icons.group, color: Theme.of(context).colorScheme.primary),
-            activeIcon: Icon(Icons.group, color: Theme.of(context).appBarTheme.foregroundColor),
+            icon: Icon(Icons.group, color: Theme.of(context).colorScheme.onBackground),
+            activeIcon: Icon(Icons.group, color: Theme.of(context).colorScheme.secondary),
           ),
           TabItem(
-            icon: Icon(Icons.menu, color: Theme.of(context).colorScheme.primary),
-            activeIcon: Icon(Icons.menu, color: Theme.of(context).appBarTheme.foregroundColor),
+            icon: Icon(Icons.menu, color: Theme.of(context).colorScheme.onBackground),
+            activeIcon: Icon(Icons.menu, color: Theme.of(context).colorScheme.secondary),
           )
         ],
       ),

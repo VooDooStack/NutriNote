@@ -5,11 +5,7 @@ import 'package:nutrinote/app/services/analytics_service.dart';
 import 'package:nutrinote/main.dart';
 
 class Endpoints {
-  //base url
-  //iphone 172.20.10.4
-  //wifi 192.168.0.203
-  //work 10.16.2.16
-  static const String baseUrl = kDebugMode ? "https://localhost:5000/" : "https://dev.fitstack.io";
+  static const String baseUrl = kDebugMode ? "https://localhost:5000/api/" : "https://dev.fitstack.io";
   static const int receiveTimeout = 15000;
   static const int connectionTimeout = 15000;
 

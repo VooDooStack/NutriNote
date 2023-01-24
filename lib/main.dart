@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
@@ -7,6 +9,7 @@ import 'package:get_it/get_it.dart';
 import 'package:nutrinote/app/routing/app_router.dart';
 import 'package:nutrinote/app/services/analytics_service.dart';
 import 'package:nutrinote/app/services/dynamic_linking.dart';
+import 'package:nutrinote/app/services/http_override.dart';
 import 'package:nutrinote/app/state/app/app_bloc.dart';
 import 'package:nutrinote/app/state/state_providers.dart';
 
@@ -14,6 +17,7 @@ GetIt locator = GetIt.instance;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  HttpOverrides.global = MyHttpOverrides();
   Firebase.initializeApp();
   locator.registerLazySingleton(() => AnalyticsService(debug: kDebugMode));
   locator.registerLazySingleton(() => DynamicLinkService());
