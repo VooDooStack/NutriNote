@@ -27,7 +27,7 @@ class DashboardHeader extends StatelessWidget {
                     ),
                 children: [
                   TextSpan(
-                    text: '${user.username}\n',
+                    text: '${user.username ?? user.email}\n',
                   ),
                   TextSpan(
                     text: 'Your weight today is 260lbs',

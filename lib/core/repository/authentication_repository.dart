@@ -46,8 +46,9 @@ class AuthenticationRepository {
 
   Future<void> logIn({required String email, required String password}) async {
     try {
-      UserCredential client = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-      var token = await client.user?.getIdToken();
+      String? token = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) async => await value.user?.getIdToken());
 
       var response = await endPoints.post(
         'account/authenticate',
@@ -60,10 +61,10 @@ class AuthenticationRepository {
 
       controller.add(AuthStream(user: AppUser.fromJson(response.data), status: AuthenticationStatus.authenticated));
       locator<AnalyticsService>().logLoggedIn(loggedInMethod: 'email');
-    } on FirebaseException catch (e) {
+    } catch (e) {
       Fluttertoast.showToast(msg: '$e' ?? 'Error', toastLength: Toast.LENGTH_LONG, backgroundColor: Colors.red, timeInSecForIosWeb: 3);
       if (kDebugMode) {
-        log("${e.message} ${e.code} ${e.plugin}");
+        log("$e");
       } else {
         locator<AnalyticsService>().logError(exception: e.toString(), reason: 'log_in_email_password', stacktrace: StackTrace.current);
       }

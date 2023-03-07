@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:nutrinote/features/login/views/login_email_form_view.dart';
 import 'package:nutrinote/features/login/views/login_phone_form_view.dart';
