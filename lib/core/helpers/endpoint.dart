@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:nutrinote/app/services/analytics_service.dart';
+import 'package:nutrinote/core/services/analytics_service.dart';
 import 'package:nutrinote/main.dart';
 
 class Endpoints {
-  static const String baseUrl = kDebugMode ? "https://localhost:5000/api/" : "https://dev.fitstack.io";
+  static const String baseUrl = kDebugMode ? "http://localhost:8080/api/" : "dev.nutrinote.app/api/";
   static const int receiveTimeout = 15000;
   static const int connectionTimeout = 15000;
 
@@ -16,8 +16,8 @@ class Endpoints {
         BaseOptions(
           baseUrl: baseUrl,
           headers: {"Authorization": "Bearer $token"},
-          receiveTimeout: receiveTimeout,
-          connectTimeout: connectionTimeout,
+          receiveTimeout: const Duration(milliseconds: receiveTimeout),
+          connectTimeout: const Duration(milliseconds: connectionTimeout),
         ),
       ),
     );

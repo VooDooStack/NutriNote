@@ -10,7 +10,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title), centerTitle: false, actions: const [CircleAvatar(), SizedBox(width: 10)]),
+      // appBar: AppBar(title: Text(title), centerTitle: false, actions: const [CircleAvatar(), SizedBox(width: 10)]),
       body: child,
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,

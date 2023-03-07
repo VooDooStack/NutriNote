@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nutrinote/app/repository/authentication_repository.dart';
-import 'package:nutrinote/app/state/app/app_bloc.dart';
+import 'package:nutrinote/core/repository/authentication_repository.dart';
+import 'package:nutrinote/core/state/app/app_bloc.dart';
 
 class StateProviders extends StatelessWidget {
   final Widget child;
@@ -11,12 +11,16 @@ class StateProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<AuthenticationRepository>(create: (context) => AuthenticationRepository()),
+        RepositoryProvider<AuthenticationRepository>(
+            create: (context) => AuthenticationRepository()),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AppBloc>(
-            create: (context) => AppBloc(authenticationRepository: context.read<AuthenticationRepository>()),
+            create: (context) => AppBloc(
+                authenticationRepository:
+                    context.read<AuthenticationRepository>())
+              ..add(AuthenticationPersistRequested()),
           ),
         ],
         child: child,

@@ -6,19 +6,20 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nutrinote/app/routing/app_router.dart';
-import 'package:nutrinote/app/services/analytics_service.dart';
-import 'package:nutrinote/app/services/dynamic_linking.dart';
-import 'package:nutrinote/app/services/http_override.dart';
-import 'package:nutrinote/app/state/app/app_bloc.dart';
-import 'package:nutrinote/app/state/state_providers.dart';
+import 'package:nutrinote/core/routing/app_router.dart';
+import 'package:nutrinote/core/services/analytics_service.dart';
+import 'package:nutrinote/core/services/dynamic_linking.dart';
+import 'package:nutrinote/core/services/http_override.dart';
+import 'package:nutrinote/core/state/app/app_bloc.dart';
+import 'package:nutrinote/core/state/state_providers.dart';
+import 'package:nutrinote/firebase_options.dart';
 
 GetIt locator = GetIt.instance;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  Firebase.initializeApp();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   locator.registerLazySingleton(() => AnalyticsService(debug: kDebugMode));
   locator.registerLazySingleton(() => DynamicLinkService());
   runApp(const App());

@@ -1,76 +1,40 @@
 {
   "project_info": {
-    "project_number": "96874525266",
-    "project_id": "nutrinote-7daa5",
-    "storage_bucket": "nutrinote-7daa5.appspot.com"
+    "project_number": "837772000358",
+    "project_id": "nutrinote-375816",
+    "storage_bucket": "nutrinote-375816.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:96874525266:android:4984a12e8cf10e61d1658b",
-        "android_client_info": {
-          "package_name": "com.example.nutrinote"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "96874525266-fgrcm7ovhcbnlpiokpbhrnktfhs2o74c.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBIK8TbsDBsxHBtcnEEQhRhfM29FyXLbNs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "96874525266-fgrcm7ovhcbnlpiokpbhrnktfhs2o74c.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "96874525266-i23jh7fapbn85sgdua2be9fs678f56hb.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.nutrinote"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:96874525266:android:d71e3f7b8fa021bfd1658b",
+        "mobilesdk_app_id": "1:837772000358:android:81e371849b8bb6d47641a7",
         "android_client_info": {
           "package_name": "com.voostack.nutrinote"
         }
       },
       "oauth_client": [
         {
-          "client_id": "96874525266-fgrcm7ovhcbnlpiokpbhrnktfhs2o74c.apps.googleusercontent.com",
+          "client_id": "837772000358-v9u3negsrpq7mlg7fvtls8r9j9onp08m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIK8TbsDBsxHBtcnEEQhRhfM29FyXLbNs"
+          "current_key": "AIzaSyBIhJ-_beyQNk26q_TNs95WFz2l04nC0lY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "96874525266-fgrcm7ovhcbnlpiokpbhrnktfhs2o74c.apps.googleusercontent.com",
+              "client_id": "837772000358-il72pmh4rh3kna3bgqn7piij07rbgr57.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "96874525266-i23jh7fapbn85sgdua2be9fs678f56hb.apps.googleusercontent.com",
+              "client_id": "837772000358-mqmiph8qp8iob2njv8saehq6onbq7n1p.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.nutrinote"
+                "bundle_id": "com.voostack.nutrinote"
               }
             }
           ]

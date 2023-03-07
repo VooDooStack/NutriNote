@@ -6,8 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:nutrinote/app/models/app_user_model.dart';
-import 'package:nutrinote/app/repository/authentication_repository.dart';
+import 'package:nutrinote/core/models/app_user_model.dart';
+import 'package:nutrinote/core/repository/authentication_repository.dart';
 
 part 'app_event.dart';
 part 'app_state.dart';

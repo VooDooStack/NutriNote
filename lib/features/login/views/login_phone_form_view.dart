@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:nutrinote/app/repository/authentication_repository.dart';
+import 'package:nutrinote/core/repository/authentication_repository.dart';
 import 'package:nutrinote/widgets/atoms/nn_icon_button.dart';
 import 'package:nutrinote/widgets/atoms/nn_text_field.dart';
 
@@ -28,7 +28,7 @@ class LoginPhoneFormView extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Text('Forgot Password?', style: Theme.of(context).textTheme.bodySmall),
         ),
-        const SizedBox(height: 50),
+        const Spacer(),
         NNIconButton(
           icon: null,
           text: 'Login',

@@ -7,16 +7,20 @@ part of 'app_user_model.dart';
 // **************************************************************************
 
 AppUser _$AppUserFromJson(Map<String, dynamic> json) => AppUser(
-      displayName: json['displayName'] as String,
+      id: json['id'] as String,
+      username: json['username'] as String?,
       email: json['email'] as String,
+      emailVerified: json['emailVerified'] as bool?,
       phoneNumber: json['phoneNumber'] as String?,
       imageUrl: json['imageUrl'] as String?,
       token: json['token'] as String?,
     );
 
 Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
-      'displayName': instance.displayName,
+      'id': instance.id,
+      'username': instance.username,
       'email': instance.email,
+      'emailVerified': instance.emailVerified,
       'token': instance.token,
       'phoneNumber': instance.phoneNumber,
       'imageUrl': instance.imageUrl,

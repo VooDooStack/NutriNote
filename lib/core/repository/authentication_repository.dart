@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:nutrinote/app/helpers/endpoint.dart';
-import 'package:nutrinote/app/models/app_user_model.dart';
-import 'package:nutrinote/app/services/analytics_service.dart';
-import 'package:nutrinote/app/state/app/app_bloc.dart';
+import 'package:nutrinote/core/helpers/endpoint.dart';
+import 'package:nutrinote/core/models/app_user_model.dart';
+import 'package:nutrinote/core/services/analytics_service.dart';
+import 'package:nutrinote/core/state/app/app_bloc.dart';
 import 'package:nutrinote/main.dart';
 
 class AuthenticationRepository {
@@ -22,13 +24,20 @@ class AuthenticationRepository {
   }
 
   void persistUserAuth() {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user == null) {
         if (kDebugMode) log('User is currently signed out!');
         controller.add(AuthStream(user: null, status: AuthenticationStatus.unauthenticated));
       } else {
         if (kDebugMode) log('User is signed in!');
-        controller.add(AuthStream(user: AppUser.empty(), status: AuthenticationStatus.authenticated));
+        var response = await endPoints.post(
+          'account/authenticate',
+          //bearer token
+          data: {
+            'Authorization ': 'Bearer ${await user.getIdToken()}',
+          },
+        );
+        controller.add(AuthStream(user: AppUser.fromJson(response.data), status: AuthenticationStatus.authenticated));
       }
     }).onError((e) {
       locator<AnalyticsService>().logError(exception: e.toString(), reason: 'persist_user_authentication', stacktrace: StackTrace.current);
@@ -37,15 +46,24 @@ class AuthenticationRepository {
 
   Future<void> logIn({required String email, required String password}) async {
     try {
-      var response = await endPoints.post('account/login', data: {'email': email, 'password': password});
-      if (response.statusCode == 200) {
-        controller.add(AuthStream(user: AppUser.fromJson(response.data), status: AuthenticationStatus.authenticated));
-      }
+      UserCredential client = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      var token = await client.user?.getIdToken();
+
+      var response = await endPoints.post(
+        'account/authenticate',
+        options: Options(
+          headers: {
+            "Authorization": "Bearer $token",
+          },
+        ),
+      );
+
+      controller.add(AuthStream(user: AppUser.fromJson(response.data), status: AuthenticationStatus.authenticated));
       locator<AnalyticsService>().logLoggedIn(loggedInMethod: 'email');
-    } on FirebaseAuthException catch (e) {
-      Fluttertoast.showToast(msg: e.message ?? 'Error', toastLength: Toast.LENGTH_LONG, backgroundColor: Colors.red, timeInSecForIosWeb: 3);
+    } on FirebaseException catch (e) {
+      Fluttertoast.showToast(msg: '$e' ?? 'Error', toastLength: Toast.LENGTH_LONG, backgroundColor: Colors.red, timeInSecForIosWeb: 3);
       if (kDebugMode) {
-        log(e.toString());
+        log("${e.message} ${e.code} ${e.plugin}");
       } else {
         locator<AnalyticsService>().logError(exception: e.toString(), reason: 'log_in_email_password', stacktrace: StackTrace.current);
       }

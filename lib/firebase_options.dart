@@ -44,40 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCuMcvI-KRsDtdq9dUHMhmIkyni4UBnWjM',
-    appId: '1:96874525266:web:e86ef37bb5ecff22d1658b',
-    messagingSenderId: '96874525266',
-    projectId: 'nutrinote-7daa5',
-    authDomain: 'nutrinote-7daa5.firebaseapp.com',
-    storageBucket: 'nutrinote-7daa5.appspot.com',
-    measurementId: 'G-EZS3Z3DF82',
+    apiKey: 'AIzaSyA9vi8HuQ9nHWxZLCRuoTod3XB1ocTwhco',
+    appId: '1:837772000358:web:1b97dabae34fa4447641a7',
+    messagingSenderId: '837772000358',
+    projectId: 'nutrinote-375816',
+    authDomain: 'nutrinote-375816.firebaseapp.com',
+    storageBucket: 'nutrinote-375816.appspot.com',
+    measurementId: 'G-V70DTK0NQJ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBIK8TbsDBsxHBtcnEEQhRhfM29FyXLbNs',
-    appId: '1:96874525266:android:d71e3f7b8fa021bfd1658b',
-    messagingSenderId: '96874525266',
-    projectId: 'nutrinote-7daa5',
-    storageBucket: 'nutrinote-7daa5.appspot.com',
+    apiKey: 'AIzaSyBIhJ-_beyQNk26q_TNs95WFz2l04nC0lY',
+    appId: '1:837772000358:android:81e371849b8bb6d47641a7',
+    messagingSenderId: '837772000358',
+    projectId: 'nutrinote-375816',
+    storageBucket: 'nutrinote-375816.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAaJYfUFXLw7Mk2KX0CF1Tp68rqlcv1QUo',
-    appId: '1:96874525266:ios:81de494e86112763d1658b',
-    messagingSenderId: '96874525266',
-    projectId: 'nutrinote-7daa5',
-    storageBucket: 'nutrinote-7daa5.appspot.com',
-    iosClientId: '96874525266-diu2853tctonut2otto89fqequcoj7rr.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDGI-iQtWEp_2a7c3Hj4CZIvgU3zS-VqKY',
+    appId: '1:837772000358:ios:00af8efda8b348e17641a7',
+    messagingSenderId: '837772000358',
+    projectId: 'nutrinote-375816',
+    storageBucket: 'nutrinote-375816.appspot.com',
+    iosClientId: '837772000358-mqmiph8qp8iob2njv8saehq6onbq7n1p.apps.googleusercontent.com',
     iosBundleId: 'com.voostack.nutrinote',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAaJYfUFXLw7Mk2KX0CF1Tp68rqlcv1QUo',
-    appId: '1:96874525266:ios:81de494e86112763d1658b',
-    messagingSenderId: '96874525266',
-    projectId: 'nutrinote-7daa5',
-    storageBucket: 'nutrinote-7daa5.appspot.com',
-    iosClientId: '96874525266-diu2853tctonut2otto89fqequcoj7rr.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDGI-iQtWEp_2a7c3Hj4CZIvgU3zS-VqKY',
+    appId: '1:837772000358:ios:00af8efda8b348e17641a7',
+    messagingSenderId: '837772000358',
+    projectId: 'nutrinote-375816',
+    storageBucket: 'nutrinote-375816.appspot.com',
+    iosClientId: '837772000358-mqmiph8qp8iob2njv8saehq6onbq7n1p.apps.googleusercontent.com',
     iosBundleId: 'com.voostack.nutrinote',
   );
 }

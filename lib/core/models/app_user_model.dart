@@ -5,37 +5,45 @@ part 'app_user_model.g.dart';
 
 @JsonSerializable()
 class AppUser extends Equatable {
-  final String displayName;
+  final String id;
   final String email;
+  final String? username;
+  final bool? emailVerified;
   final String? token;
   final String? phoneNumber;
   final String? imageUrl;
 
   const AppUser({
-    required this.displayName,
+    required this.id,
     required this.email,
+    this.username,
+    this.emailVerified,
     this.phoneNumber,
     this.imageUrl,
     this.token,
   });
 
   @override
-  List<Object?> get props => [displayName, email, phoneNumber, imageUrl, token];
+  List<Object?> get props => [username, email, phoneNumber, imageUrl, token, id, emailVerified];
 
   //copy with
   AppUser copyWith({
-    String? displayName,
+    String? username,
     String? email,
     String? phoneNumber,
     String? imageUrl,
     String? token,
+    String? id,
+    bool? emailVerified,
   }) {
     return AppUser(
-      displayName: displayName ?? this.displayName,
+      username: username ?? this.username,
       email: email ?? this.email,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       imageUrl: imageUrl ?? this.imageUrl,
       token: token ?? this.token,
+      id: id ?? this.id,
+      emailVerified: emailVerified ?? this.emailVerified,
     );
   }
 
@@ -44,10 +52,12 @@ class AppUser extends Equatable {
 
   //empty user factory
   factory AppUser.empty() => const AppUser(
-        displayName: '',
+        username: '',
         email: '',
         phoneNumber: '',
         imageUrl: '',
         token: '',
+        id: '',
+        emailVerified: false,
       );
 }
