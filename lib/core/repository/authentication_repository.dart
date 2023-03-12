@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +23,7 @@ class AuthenticationRepository {
   }
 
   void persistUserAuth() {
+    if (kDebugMode) log('trying to log in user');
     FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user == null) {
         if (kDebugMode) log('User is currently signed out!');
@@ -32,7 +32,6 @@ class AuthenticationRepository {
         if (kDebugMode) log('User is signed in!');
         var response = await endPoints.post(
           'account/authenticate',
-          //bearer token
           data: {
             'Authorization ': 'Bearer ${await user.getIdToken()}',
           },
@@ -46,21 +45,16 @@ class AuthenticationRepository {
 
   Future<void> logIn({required String email, required String password}) async {
     try {
-      String? token = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) async => await value.user?.getIdToken());
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
+        if (kDebugMode) log('user logged in');
+      });
 
-      var response = await endPoints.post(
-        'account/authenticate',
-        options: Options(
-          headers: {
-            "Authorization": "Bearer $token",
-          },
-        ),
-      );
+      var response = await endPoints.post('account/authenticate', authenticate: true);
 
       controller.add(AuthStream(user: AppUser.fromJson(response.data), status: AuthenticationStatus.authenticated));
-      locator<AnalyticsService>().logLoggedIn(loggedInMethod: 'email');
+      locator<AnalyticsService>().logLoggedIn(
+        loggedInMethod: 'email',
+      );
     } catch (e) {
       Fluttertoast.showToast(msg: '$e' ?? 'Error', toastLength: Toast.LENGTH_LONG, backgroundColor: Colors.red, timeInSecForIosWeb: 3);
       if (kDebugMode) {

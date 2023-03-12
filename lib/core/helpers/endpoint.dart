@@ -30,13 +30,16 @@ class Endpoints {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
+    bool? authenticate,
   }) async {
     try {
+      String? token;
+      if (authenticate == true) token = await FirebaseAuth.instance.currentUser?.getIdToken();
       final Response response = await dio().then(
         (value) => value.get(
           baseUrl + url,
           queryParameters: queryParameters,
-          options: options,
+          options: authenticate == true ? Options(headers: {"Authorization": "Bearer $token"}) : options,
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress,
         ),
@@ -58,14 +61,17 @@ class Endpoints {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
+    bool? authenticate,
   }) async {
     try {
+      String? token;
+      if (authenticate == true) token = await FirebaseAuth.instance.currentUser?.getIdToken();
       final Response response = await dio().then(
         (value) => value.post(
           baseUrl + uri,
           data: data,
           queryParameters: queryParameters,
-          options: options,
+          options: authenticate == true ? Options(headers: {"Authorization": "Bearer $token"}) : options,
           cancelToken: cancelToken,
           onSendProgress: onSendProgress,
           onReceiveProgress: onReceiveProgress,

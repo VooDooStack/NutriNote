@@ -16,10 +16,13 @@ import 'package:nutrinote/firebase_options.dart';
 
 GetIt locator = GetIt.instance;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+    name: 'Nutrinote',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   locator.registerLazySingleton(() => AnalyticsService(debug: kDebugMode));
   locator.registerLazySingleton(() => DynamicLinkService());
   runApp(const App());

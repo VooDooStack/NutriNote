@@ -1,8 +1,10 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'app_user_model.g.dart';
 
+@CopyWith()
 @JsonSerializable()
 class AppUser extends Equatable {
   final String id;
@@ -12,8 +14,20 @@ class AppUser extends Equatable {
   final String? token;
   final String? phoneNumber;
   final String? imageUrl;
+  final double weight;
+  final double height;
+  final String gender;
+  final int age;
+  final double bmr;
+  final double? tdee;
 
   const AppUser({
+    required this.weight,
+    required this.height,
+    required this.gender,
+    required this.age,
+    required this.bmr,
+    this.tdee,
     required this.id,
     required this.email,
     this.username,
@@ -24,28 +38,7 @@ class AppUser extends Equatable {
   });
 
   @override
-  List<Object?> get props => [username, email, phoneNumber, imageUrl, token, id, emailVerified];
-
-  //copy with
-  AppUser copyWith({
-    String? username,
-    String? email,
-    String? phoneNumber,
-    String? imageUrl,
-    String? token,
-    String? id,
-    bool? emailVerified,
-  }) {
-    return AppUser(
-      username: username ?? this.username,
-      email: email ?? this.email,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
-      imageUrl: imageUrl ?? this.imageUrl,
-      token: token ?? this.token,
-      id: id ?? this.id,
-      emailVerified: emailVerified ?? this.emailVerified,
-    );
-  }
+  List<Object?> get props => [username, email, phoneNumber, imageUrl, token, id, emailVerified, tdee, bmr, age, weight, gender, height];
 
   factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
   Map<String, dynamic> toJson() => _$AppUserToJson(this);
@@ -59,5 +52,11 @@ class AppUser extends Equatable {
         token: '',
         id: '',
         emailVerified: false,
+        weight: 0,
+        height: 0,
+        gender: '',
+        age: 0,
+        bmr: 0,
+        tdee: 0,
       );
 }
